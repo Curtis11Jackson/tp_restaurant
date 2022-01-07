@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chez Marco
+{% endblock %}
+
+{% block body %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{{ path('home')}}">Chez Marco</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="{{ path('home')}}">Home
+					</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Admin
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ path('menu_list')}}">List of menus</a>
+						<a class="dropdown-item" href="{{ path('add_menu')}}">Add to the menu</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+{{ form_start(FormDeleteMenu ,{'attr': {'id': FormDeleteMenu.vars.id}} )}}
+
+    <div class="container col-12 mt-5">
+
+	<h2 class="text-center">Administrate your Menus</h2>
+
+        <table class="table w-75 m-auto">
+            <thead>
+                <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for menu in menuList %}
+
+                    <tr>
+                        <td>{{menu.name}}</td>
+						<td>{{menu.price}}</td>
+						<td>{{menu.stock}}</td>
+						<td>
+							<a class="btn btn-warning" href="{{ path('update_menu')}}/{{menu.id}}">Update</a>
+							<button class="delete-btn btn btn-danger" data-id="{{menu.id}}" style="margin-left:15px;" id="delete_{{menu.id}}" onclick="formSubmit();">Delete</button>
+							<input type="hidden" class="hidden_input" name="idMenu" id="idMenu" value="{{ menu.id }}"/>
+						
+						</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    {{ form_row(FormDeleteMenu.idMenuDeleted) }}
+    {{ form_end(FormDeleteMenu,{'render_rest': false}) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script>
+
+        $('.delete-btn').click(function(event) {
+			event.preventDefault();
+			
+            console.log($(this).data('id'));
+        });
+
+
+		function formSubmit() {
+            document.getElementById("{{ FormDeleteMenu.vars.id }}").submit();
+        }
+		
+		 
+
+</script>
+
+{% endblock %}

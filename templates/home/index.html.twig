@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chez Marco
+{% endblock %}
+
+{% block body %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{{ path('home')}}">Chez Marco</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="{{ path('home')}}">Home
+					</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Admin
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ path('menu_list')}}">List of menus</a>
+						<a class="dropdown-item" href="{{ path('add_menu')}}">Add to the menu</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<h1 class="text-center">Welcome to Marco's</h1>
+
+	<p class="text-center">All our food is fresh, come visit us !</p>
+
+    <div class="container col-12 mt-5 d-flex flex-wrap" style="justify-content:space-between;">
+
+        {% for menu in menuList %}
+
+            <div class="card col-3 mt-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{menu.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">{{menu.price}} £</p>
+                    <p class="card-text">{{menu.stock}} left</p>
+                    <a href="{{ path('order')}}/{{menu.id}}" class="btn btn-outline-success">Order</a>
+                </div>
+            </div>
+
+        {% endfor %}
+    
+
+    </div>
+
+
+
+{% endblock %}

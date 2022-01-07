@@ -1,0 +1,9 @@
+customer_list:
+  path: /api/v1/customers
+  controller: App\Controller\CustomerController:index
+  methods: [GET]
+
+customer_create:
+  path: /api/v1/customers/create
+  controller: App\Controller\CustomerController:create
+  methods: [POST]
