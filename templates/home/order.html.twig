@@ -54,8 +54,8 @@
 
 			{{ form_start(formAddOrder ,{'attr': {'id': 'formAddOrder'}} )}}
 
-			{{ form_row(formAddOrder.content)}}
-			{{ form_row(formAddOrder.totalPrice) }}
+			{{ form_row(formAddOrder.content, {value : order.name}) }}
+			{{ form_row(formAddOrder.totalPrice, {value : order.price}) }}
 			{{ form_row(formAddOrder.Order) }}
 
 		{{ form_end(formAddOrder) }}

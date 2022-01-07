@@ -14,18 +14,16 @@ class AddOrderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $name = $options['add_order_content'];
-        $price = $options['add_order_totalPrice'];
 
         $builder
             ->add('content', TextType::class,['attr' => ['class' => 'form-control',
             'placeholder' => 'Menu'],
-            'disabled' => true,
+            
             ])
 
             ->add('totalPrice', TextType::class,['attr' => ['class' => 'form-control ',
             'placeholder' => 'Price'],
-            'disabled' => true,
+            // 'disabled' => true,
             ])
 
             ->add('Order', SubmitType::class,['attr' => ['class' => 'btn btn-success mt-2']])
@@ -36,8 +34,8 @@ class AddOrderType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Order::class,
-            "add_order_content" => null,
-            "add_order_totalPrice" => null,
+            "content" => null,
+            "totalPrice" => null,            
         ]);
     }
 }

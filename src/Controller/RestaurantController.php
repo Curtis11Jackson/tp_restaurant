@@ -14,6 +14,7 @@ use App\Form\AddMenuType;
 use App\Form\UpdateMenuType;
 use App\Form\DeleteMenuType;
 use App\Form\AddOrderType;
+use App\Repository\OrderRepository;
 
 class RestaurantController extends AbstractController
 {
@@ -44,6 +45,7 @@ class RestaurantController extends AbstractController
     public function order(
         Request $request,
         MenusRepository $menusRepository,
+        OrderRepository $orderRepository,
         $id = null
     ) {
 
@@ -66,7 +68,7 @@ class RestaurantController extends AbstractController
         if ($formAddOrder->isSubmitted() && $formAddOrder->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            // dd($menu);
+            // dd($order);
 
             $em->persist($order);
             $em->flush();    
@@ -108,7 +110,7 @@ class RestaurantController extends AbstractController
         if ($formAddMenu->isSubmitted() && $formAddMenu->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            // dd($menu);
+            dd($menu);
 
             $em->persist($menu);
             $em->flush();    
