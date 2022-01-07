@@ -20,12 +20,12 @@ class AddOrderType extends AbstractType
         $builder
             ->add('content', TextType::class,['attr' => ['class' => 'form-control',
             'placeholder' => 'Menu'],
-            'data' => $name,
+            'disabled' => true,
             ])
 
             ->add('totalPrice', TextType::class,['attr' => ['class' => 'form-control ',
             'placeholder' => 'Price'],
-            'data' => $price
+            'disabled' => true,
             ])
 
             ->add('Order', SubmitType::class,['attr' => ['class' => 'btn btn-success mt-2']])
